@@ -12,7 +12,6 @@ class PaymentPermissionSeeder extends Seeder {
 	 */
 	public function run() {
 		$permissions = [
-			//MASTER > PaymentS
 			10100 => [
 				'display_order' => 10,
 				'parent_id' => null,
