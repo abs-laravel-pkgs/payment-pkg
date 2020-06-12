@@ -11,4 +11,4 @@
     var import_cron_job_delete = "{{url('import-cron-job-pkg/import-job/delete/')}}";
     var import_cron_job_template_file_url = "{{URL::asset('/public/templates/')}}";
 </script>
-<script type="text/javascript" src="{{URL::asset($import_cron_job_pkg_path.'public/angular/import-cron-job-pkg/pages/import-cron-job/controller.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset($import_cron_job_pkg_path.'public/angular/import-cron-job-pkg/pages/import-cron-job/controller1.js')}}"></script>
