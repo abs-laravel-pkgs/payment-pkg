@@ -15,10 +15,11 @@ class PaymentModesC extends Migration {
 			Schema::create('payment_modes', function (Blueprint $table) {
 				$table->increments('id');
 				$table->unsignedInteger('company_id');
-				$table->unsignedInteger('payment_mode_of_id');
+				$table->string('code', 191);
 				$table->string('name', 191);
+				$table->string('description', 255)->nullable();
 				$table->boolean('has_payment_gateway');
-				$table->unsignedInteger('payment_gateway_type_id')->nullable();
+				$table->unsignedInteger('display_order')->default(9999);
 				$table->unsignedInteger('created_by_id')->nullable();
 				$table->unsignedInteger('updated_by_id')->nullable();
 				$table->unsignedInteger('deleted_by_id')->nullable();
@@ -26,14 +27,13 @@ class PaymentModesC extends Migration {
 				$table->softDeletes();
 
 				$table->foreign('company_id')->references('id')->on('companies')->onDelete('CASCADE')->onUpdate('cascade');
-				$table->foreign('payment_mode_of_id')->references('id')->on('configs')->onDelete('CASCADE')->onUpdate('cascade');
 
-				$table->foreign('payment_gateway_type_id')->references('id')->on('configs')->onDelete('SET NULL')->onUpdate('cascade');
 				$table->foreign('created_by_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('cascade');
 				$table->foreign('updated_by_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('cascade');
 				$table->foreign('deleted_by_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('cascade');
 
-				$table->unique(["company_id", "payment_mode_of_id", "name"]);
+				$table->unique(["company_id", "code"]);
+				$table->unique(["company_id", "name"]);
 			});
 		}
 	}
